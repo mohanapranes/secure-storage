@@ -10,5 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class ClamAVConfig {
     private String host;
     private Integer port;
+    private int connectTimeoutMs;
+    private int readTimeoutMs;
 }
 
