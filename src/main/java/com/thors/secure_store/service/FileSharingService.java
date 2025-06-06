@@ -1,3 +1,3 @@
 package com.thors.secure_store.service;
 
-public class SharingService {}
+public class FileSharingService {}

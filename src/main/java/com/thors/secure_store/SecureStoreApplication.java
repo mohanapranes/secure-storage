@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SecureStoreApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SecureStoreApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(SecureStoreApplication.class, args);
+  }
 }

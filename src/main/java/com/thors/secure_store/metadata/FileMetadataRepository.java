@@ -10,8 +10,10 @@ import java.util.Optional;
 @Repository
 public interface FileMetadataRepository extends JpaRepository<FileMetadata, String> {
 
-    List<FileMetadata> findByOwnerId(String userId);
+  List<FileMetadata> findByOwnerId(String userId);
 
-    @Query ("SELECT f FROM FileMetadata f WHERE f.fileId = :fileId AND f.ownerId = :userId")
-    Optional<FileMetadata> findByFileIdAndUser(String fileId, String userId);
+  FileMetadata findByFileId(String fileId);
+
+  @Query("SELECT f FROM FileMetadata f WHERE f.fileId = :fileId AND f.ownerId = :userId")
+  Optional<FileMetadata> findByFileIdAndUser(String fileId, String userId);
 }

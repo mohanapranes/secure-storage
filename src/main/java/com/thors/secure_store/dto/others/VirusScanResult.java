@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class VirusScanResult {
-    private boolean isInfected;
-    private String virusName;
-    private String rawResponse;
+  private boolean isInfected;
+  private String virusName;
+  private String rawResponse;
 }
