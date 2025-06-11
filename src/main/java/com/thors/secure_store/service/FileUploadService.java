@@ -2,8 +2,9 @@ package com.thors.secure_store.service;
 
 import com.thors.secure_store.dto.others.VirusScanResult;
 import com.thors.secure_store.dto.response.FileUploadResponse;
-import com.thors.secure_store.metadata.MetadataService;
 import com.thors.secure_store.storage.MinioStorageService;
+import com.thors.secure_store.util.EncryptionUtils;
+import com.thors.secure_store.util.FileMetadataUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
@@ -19,10 +20,10 @@ import java.io.IOException;
 public class FileUploadService {
 
   private final VirusScanService virusScanService;
-  private final MetadataService metadataService;
+  private final FileMetadataUtils fileMetadataUtils;
   //    private final AuditService auditService;
   private final MinioStorageService fileStorageService;
-  private final EncryptionService encryptionService;
+  private final EncryptionUtils encryptionUtils;
 
   public FileUploadResponse uploadFile(MultipartFile file, String ownerId) {
     String originalFileName = file.getOriginalFilename();
@@ -63,16 +64,16 @@ public class FileUploadService {
       }
 
       // === Step 3: Encryption ===
-      byte[] iv = encryptionService.generateIV();
-      SecretKey secretKey = encryptionService.generateKey();
-      byte[] encryptedData = encryptionService.encrypt(file.getBytes(), secretKey, iv);
+      byte[] iv = encryptionUtils.generateIV();
+      SecretKey secretKey = encryptionUtils.generateKey();
+      byte[] encryptedData = encryptionUtils.encrypt(file.getBytes(), secretKey, iv);
 
       // === Step 4: Store File in MinIO ===
       String fileId = fileStorageService.storeFile(encryptedData);
       log.info("File stored in storage layer with ID: {}", fileId);
 
       // === Step 5: Store Metadata ===
-      metadataService.saveFileMetadata(fileId, originalFileName, ownerId, secretKey, iv);
+      fileMetadataUtils.saveFileMetadata(fileId, originalFileName, ownerId, secretKey, iv);
       log.info("Metadata saved for file ID: {}", fileId);
 
       // === Step 6: Return success ===

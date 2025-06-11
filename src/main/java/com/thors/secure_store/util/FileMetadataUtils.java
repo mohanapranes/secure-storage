@@ -1,14 +1,16 @@
-package com.thors.secure_store.metadata;
+package com.thors.secure_store.util;
 
+import com.thors.secure_store.model.FileMetadata;
+import com.thors.secure_store.repository.FileMetadataRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.List;
 
-@Service
+@Component
 @RequiredArgsConstructor
-public class MetadataService {
+public class FileMetadataUtils {
 
   private final FileMetadataRepository metadataRepository;
 

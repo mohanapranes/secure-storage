@@ -1,4 +1,4 @@
-package com.thors.secure_store.metadata;
+package com.thors.secure_store.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -9,6 +9,7 @@ import lombok.Data;
 @Table(name = "file_metadata")
 @Data
 public class FileMetadata {
+
   @Id private String fileId;
   private String fileName;
   private String ownerId;

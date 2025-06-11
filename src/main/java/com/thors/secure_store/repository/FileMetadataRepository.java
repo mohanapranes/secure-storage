@@ -1,5 +1,6 @@
-package com.thors.secure_store.metadata;
+package com.thors.secure_store.repository;
 
+import com.thors.secure_store.model.FileMetadata;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

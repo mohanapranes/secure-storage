@@ -1,6 +1,6 @@
-package com.thors.secure_store.service;
+package com.thors.secure_store.util;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
@@ -10,8 +10,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-@Service
-public class EncryptionService {
+@Component
+public class EncryptionUtils {
 
   private static final String ENCRYPTION_ALGO = "AES/CBC/PKCS5Padding";
 

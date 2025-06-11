@@ -1,4 +1,4 @@
-package com.thors.secure_store.virusScanner;
+package com.thors.secure_store.virus_scanner;
 
 import com.thors.secure_store.config.ClamAVConfig;
 import java.io.*;
